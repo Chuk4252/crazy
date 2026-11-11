@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crazy Downloader 2.1.0 for Windows 10 and 11</title>
+  <meta name="description" content="Download Crazy Downloader 2.1.0 for Windows 10 and 11 with 16 parallel byte range workers, binary checkpoint resume, and instant YouTube quality selection.">
+  <meta property="og:title" content="Crazy Downloader 2.1.0 for Windows 10 and 11">
+  <meta property="og:description" content="Standalone Windows download manager with 16 parallel segments, checkpoint recovery, and unpacked browser companion folder.">
+  <meta property="og:image" content="./assets/icon.png">
+  <link rel="icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script src="./assets/site.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does Crazy Downloader 2.1.0 require extra runtimes on Windows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Crazy Downloader 2.1.0.exe is a standalone 64 bit executable for Windows 10 and Windows 11 that bundles its runtime and media extraction tools."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I install the included browser extension folder?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open chrome://extensions in Chrome, Edge, or Brave, enable Developer mode, click Load unpacked, and select the extensions/crazy-browser-ext folder included in this website directory."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if my network drops during a large download?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every segment writes its byte offset to a local .cdstate binary checkpoint file so you can pause or recover after a restart without starting from zero."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link button-sm">Skip to content</a>
+
+  <div class="nav-wrapper">
+    <nav class="floating-nav" aria-label="Primary navigation">
+      <a href="./index.html" class="nav-brand">
+        <img src="./assets/icon.png" alt="Crazy Downloader 2 logo" class="nav-brand-logo">
+        <span class="title-4">Crazy Downloader</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="./index.html" class="nav-link active title-4" aria-current="page">Downloads</a></li>
+        <li><a href="./about.html" class="nav-link title-4">About</a></li>
+        <li><a href="./recommendations.html" class="nav-link title-4">Recommendations</a></li>
+        <li><a href="./privacy.html" class="nav-link title-4">Privacy</a></li>
+        <li><a href="./contact.html" class="nav-link title-4">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="icon-btn" aria-label="Switch theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="128" cy="128" r="56"></circle>
+            <line x1="128" y1="36" x2="128" y2="16"></line>
+            <line x1="128" y1="240" x2="128" y2="220"></line>
+            <line x1="63" y1="63" x2="49" y2="49"></line>
+            <line x1="207" y1="207" x2="193" y2="193"></line>
+            <line x1="36" y1="128" x2="16" y2="128"></line>
+            <line x1="240" y1="128" x2="220" y2="128"></line>
+            <line x1="63" y1="193" x2="49" y2="207"></line>
+            <line x1="207" y1="49" x2="193" y2="63"></line>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
+            <path d="M210.7,158.8A88,88,0,0,1,97.2,45.3a88,88,0,1,0,113.5,113.5Z"></path>
+          </svg>
+        </button>
+
+        <button type="button" id="mobile-menu-toggle" class="icon-btn menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" aria-label="Toggle navigation menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line class="menu-line menu-line-top" x1="4" y1="8" x2="20" y2="8"></line>
+            <line class="menu-line menu-line-bottom" x1="4" y1="16" x2="20" y2="16"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobile-menu-panel" class="mobile-menu-panel" role="dialog" aria-label="Mobile navigation">
+    <a href="./index.html" class="mobile-nav-link heading-5">Downloads</a>
+    <a href="./about.html" class="mobile-nav-link heading-5">About</a>
+    <a href="./recommendations.html" class="mobile-nav-link heading-5">Recommendations</a>
+    <a href="./privacy.html" class="mobile-nav-link heading-5">Privacy</a>
+    <a href="./contact.html" class="mobile-nav-link heading-5">Contact</a>
+  </div>
+
+  <main id="main-content" class="page-container">
+    <!-- 1. Hero Section (A2, B5) -->
+    <section class="hero-section">
+      <div class="proof-strip caption-1">
+        <span>Release 2.1.0 for Windows 10 and 11</span>
+        <span class="mono">122.53 MB standalone build</span>
+        <span>Unpacked browser extension folder included</span>
+      </div>
+
+      <h1 class="heading-1 hero-heading">
+        Finish large Windows downloads<br>
+        without stalled transfers<br>
+        or slow video menus
+      </h1>
+
+      <p class="body-2 hero-subheadline">
+        Crazy Downloader 2.1.0 splits files across up to 16 parallel byte range connections, saves binary checkpoints on disk, and reads YouTube video qualities in 0.13 milliseconds.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="./Crazy%20Downloader%202.1.0.exe" download="Crazy Downloader 2.1.0.exe" class="btn btn-primary button-md">
+          <svg width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M128,32V168"></path>
+            <polyline points="80 120 128 168 176 120"></polyline>
+            <path d="M216,168v32a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V168"></path>
+          </svg>
+          <span>Download Crazy Downloader 2.1.0</span>
+        </a>
+        <span class="caption-2" style="color: var(--text-muted);">
+          Free standalone Windows 64 bit executable · Zero signup · Local execution only
+        </span>
+      </div>
+
+      <!-- 3D & 2D Interactive Hero Stage -->
+      <div class="stage-3d-wrapper">
+        <div class="stage-3d-card" data-tilt-3d>
+          <div class="floating-3d-badge caption-3 mono">
+            0.13 ms YouTube quality read
+          </div>
+
+          <div class="stage-inner-window">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-300);">
+              <div style="display: flex; align-items: center; gap: var(--sp-200); text-align: left;">
+                <div class="scene-cube" aria-hidden="true">
+                  <div class="cube-3d">
+                    <div class="cube-face cube-face-front caption-3 mono">CD2</div>
+                    <div class="cube-face cube-face-back caption-3 mono">2.1</div>
+                    <div class="cube-face cube-face-right caption-3 mono">16X</div>
+                    <div class="cube-face cube-face-left caption-3 mono">MP4</div>
+                    <div class="cube-face cube-face-top caption-3 mono">HTTP</div>
+                    <div class="cube-face cube-face-bottom caption-3 mono">SHA</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="title-2">Crazy Downloader 2.1.0 active transfer engine</div>
+                  <div class="caption-2 mono" style="color: var(--text-muted);">
+                    Target: Crazy Downloader 2.1.0.exe · 8 dynamic byte range workers active
+                  </div>
+                </div>
+              </div>
+
+              <div class="caption-3 mono" style="padding: var(--sp-50) var(--sp-100); border: 1px solid var(--bg-border); border-radius: var(--radius-md); background-color: var(--bg-page);">
+                Status: Verified 206 Partial Content
+              </div>
+            </div>
+
+            <!-- 2D Animated Multi-Segment Progress Bars -->
+            <div class="segment-grid-2d" aria-label="Simulated 8 segment parallel transfer">
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 0ms;"></div></div>
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 140ms;"></div></div>
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 280ms;"></div></div>
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 420ms;"></div></div>
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 560ms;"></div></div>
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 700ms;"></div></div>
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 840ms;"></div></div>
+              <div class="segment-slot"><div class="segment-fill-2d" style="animation-delay: 980ms;"></div></div>
+            </div>
+
+            <!-- Embedded Desktop UI Vector Graphic -->
+            <div style="margin-top: var(--sp-200); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--bg-border);">
+              <img src="./assets/desktop-ui-preview.svg" alt="Crazy Downloader 2.1.0 desktop interface showing parallel byte range segments and YouTube mux status" style="width: 100%; height: auto; display: block;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Mandatory Tagline Reveal Section (B11) -->
+    <section class="tagline-reveal-section" aria-label="Core product statement">
+      <h2 class="heading-3 tagline-reveal-copy" data-tagline-reveal>
+        <span class="reveal-word">Every</span>
+        <span class="reveal-word">megabyte</span>
+        <span class="reveal-word">splits</span>
+        <span class="reveal-word">across</span>
+        <span class="reveal-word">parallel</span>
+        <span class="reveal-word">connections,</span>
+        <span class="reveal-word">writes</span>
+        <span class="reveal-word">a</span>
+        <span class="reveal-word">local</span>
+        <span class="reveal-word">binary</span>
+        <span class="reveal-word">checkpoint,</span>
+        <span class="reveal-word">and</span>
+        <span class="reveal-word">resumes</span>
+        <span class="reveal-word">cleanly</span>
+        <span class="reveal-word">until</span>
+        <span class="reveal-word">the</span>
+        <span class="reveal-word">final</span>
+        <span class="reveal-word">hash</span>
+        <span class="reveal-word">matches.</span>
+      </h2>
+    </section>
+
+    <!-- 3. Benefits Section (A2, A6) -->
+    <section class="section-block reveal-on-scroll">
+      <div style="margin-bottom: var(--sp-400);">
+        <div class="caption-1" style="color: var(--text-muted); margin-bottom: var(--sp-75);">Engineered for reliability</div>
+        <h2 class="heading-3">Four upgrades that keep transfers moving</h2>
+      </div>
+
+      <div class="grid-2">
+        <article class="card-surface" data-tilt-3d>
+          <div class="card-inner">
+            <div class="title-2">Dynamic byte range splitting</div>
+            <p class="body-6" style="color: var(--text-secondary);">
+              <strong>Saturate available bandwidth.</strong> When a worker finishes its byte range early, the engine divides the largest remaining segment in half so idle sockets immediately take over work.
+            </p>
+          </div>
+        </article>
+
+        <article class="card-surface" data-tilt-3d>
+          <div class="card-inner">
+            <div class="title-2">Instant YouTube quality menu</div>
+            <p class="body-6" style="color: var(--text-secondary);">
+              <strong>Open video resolutions in 0.13 ms.</strong> The companion extension reads the active player response in the page main world and reuses cached metadata when muxing video and audio.
+            </p>
+          </div>
+        </article>
+
+        <article class="card-surface" data-tilt-3d>
+          <div class="card-inner">
+            <div class="title-2">Binary checkpoint crash recovery</div>
+            <p class="body-6" style="color: var(--text-secondary);">
+              <strong>Resume after restarts without data loss.</strong> Active downloads flush segment offsets to a <span class="mono">.cdstate</span> file and verify free disk space before allocating storage.
+            </p>
+          </div>
+        </article>
+
+        <article class="card-surface" data-tilt-3d>
+          <div class="card-inner">
+            <div class="title-2">On demand desktop launch</div>
+            <p class="body-6" style="color: var(--text-secondary);">
+              <strong>Start downloads even when the window is closed.</strong> The browser extension wakes the desktop download dialog through Windows Native Messaging on demand.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. Main Downloads & Included Extension Folder Section (User Core Requirement) -->
+    <section id="downloads" class="section-block reveal-on-scroll">
+      <div style="margin-bottom: var(--sp-400);">
+        <div class="caption-1" style="color: var(--text-muted); margin-bottom: var(--sp-75);">Direct distribution</div>
+        <h2 class="heading-3">Download the 2.1.0 build and browser extension folder</h2>
+      </div>
+
+      <div class="grid-2">
+        <!-- Item 1: Crazy Downloader 2.1.0.exe -->
+        <article class="card-surface" data-tilt-3d>
+          <div class="card-inner" style="justify-content: space-between; height: 100%;">
+            <div style="display: flex; flex-direction: column; gap: var(--sp-100);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="title-2">Crazy Downloader 2.1.0</span>
+                <span class="caption-3 mono" style="padding: var(--sp-25) var(--sp-75); border: 1px solid var(--bg-border); border-radius: var(--radius-sm);">Windows x64</span>
+              </div>
+              <p class="body-6" style="color: var(--text-secondary);">
+                Standalone Windows 10 and Windows 11 application executable included directly in this website folder. Run once to register browser Native Messaging automatically.
+              </p>
+              <div class="caption-4 mono" style="color: var(--text-muted); word-break: break-all;">
+                File: Crazy Downloader 2.1.0.exe (122.53 MB)<br>
+                SHA256: da3447e4b0641b26be0a32af1d8179ff3860f47bfe519d5ce357cdcf3dedf216
+              </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: var(--sp-75); margin-top: var(--sp-200);">
+              <a href="./Crazy%20Downloader%202.1.0.exe" download="Crazy Downloader 2.1.0.exe" class="btn btn-primary button-sm">
+                Download Crazy Downloader 2.1.0.exe
+              </a>
+              <button type="button" class="btn button-sm" data-copy-value="da3447e4b0641b26be0a32af1d8179ff3860f47bfe519d5ce357cdcf3dedf216">
+                Copy SHA256
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2: Unpacked Extensions Folder -->
+        <article class="card-surface" data-tilt-3d>
+          <div class="card-inner" style="justify-content: space-between; height: 100%;">
+            <div style="display: flex; flex-direction: column; gap: var(--sp-100);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="title-2">Companion browser extension folder</span>
+                <span class="caption-3 mono" style="padding: var(--sp-25) var(--sp-75); border: 1px solid var(--bg-border); border-radius: var(--radius-sm);">Manifest V3</span>
+              </div>
+              <p class="body-6" style="color: var(--text-secondary);">
+                Provided directly as an unpacked folder inside <span class="mono">extensions/crazy-browser-ext</span> (not a ZIP archive) so you can inspect the source and load it straight into Chrome, Edge, or Brave.
+              </p>
+              <div class="caption-4 mono" style="color: var(--text-muted);">
+                Folder path: ./extensions/crazy-browser-ext<br>
+                Includes: manifest.json, icons/, src/background.js, src/content.js, src/popup.html
+              </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: var(--sp-75); margin-top: var(--sp-200);">
+              <a href="./extensions/crazy-browser-ext/manifest.json" class="btn button-sm">
+                Inspect manifest.json
+              </a>
+              <button type="button" class="btn button-sm" data-copy-value="chrome://extensions">
+                Copy chrome://extensions URL
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. How It Works Section (3 steps, A2, A6) -->
+    <section class="section-block reveal-on-scroll">
+      <div style="margin-bottom: var(--sp-400);">
+        <div class="caption-1" style="color: var(--text-muted); margin-bottom: var(--sp-75);">Setup in under two minutes</div>
+        <h2 class="heading-3">How it works</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="card-surface">
+          <div class="card-inner">
+            <span class="caption-3 mono" style="color: var(--text-muted);">Step 01</span>
+            <h3 class="title-2">Launch the desktop build</h3>
+            <p class="body-6" style="color: var(--text-secondary);">
+              Download and run <span class="mono">Crazy Downloader 2.1.0.exe</span>. On first launch it registers the local host on port 49820 and writes the Windows Native Messaging manifest.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-surface">
+          <div class="card-inner">
+            <span class="caption-3 mono" style="color: var(--text-muted);">Step 02</span>
+            <h3 class="title-2">Load the unpacked extension folder</h3>
+            <p class="body-6" style="color: var(--text-secondary);">
+              Open <span class="mono">chrome://extensions</span>, turn on Developer mode, click Load unpacked, and select the <span class="mono">extensions/crazy-browser-ext</span> folder.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-surface">
+          <div class="card-inner">
+            <span class="caption-3 mono" style="color: var(--text-muted);">Step 03</span>
+            <h3 class="title-2">Start any file or video download</h3>
+            <p class="body-6" style="color: var(--text-secondary);">
+              Click any download link or use the corner button on YouTube videos to choose a resolution, pick your folder, and transfer across parallel connections.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Proof & Measured Benchmarks Section (A2, B8) -->
+    <section class="section-block reveal-on-scroll">
+      <div style="margin-bottom: var(--sp-400);">
+        <div class="caption-1" style="color: var(--text-muted); margin-bottom: var(--sp-75);">Verified local benchmarks</div>
+        <h2 class="heading-3">Measured performance in version 2.1.0</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="card-surface">
+          <div class="card-inner">
+            <div class="heading-4 mono">0.13 ms</div>
+            <div class="title-4">In page YouTube quality lookup</div>
+            <p class="caption-2" style="color: var(--text-secondary);">
+              Reads available video heights synchronously from the YouTube player response in the main world.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-surface">
+          <div class="card-inner">
+            <div class="heading-4 mono">0.24 ms</div>
+            <div class="title-4">Warm metadata cache response</div>
+            <p class="caption-2" style="color: var(--text-secondary);">
+              Serves prefetched video format lists from memory and reuses the saved info JSON file when starting the transfer.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-surface">
+          <div class="card-inner">
+            <div class="heading-4 mono">17 / 17</div>
+            <div class="title-4">Automated test suite pass rate</div>
+            <p class="caption-2" style="color: var(--text-secondary);">
+              Verified across dynamic segmentation, checkpoint recovery, browser handoff, and SHA256 update checks.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-surface" style="margin-top: var(--sp-300);">
+        <div class="card-inner">
+          <div class="title-4">Verified release checksum and integrity</div>
+          <p class="body-6" style="color: var(--text-secondary);">
+            Every build of Crazy Downloader 2.1.0 is verified against its SHA256 digest (<span class="mono">da3447e4b0641b26be0a32af1d8179ff3860f47bfe519d5ce357cdcf3dedf216</span>) and tested across dynamic segmentation, presigned cloud links, and YouTube 4K video and audio muxing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ Section (6 to 12 questions, A2, A6) -->
+    <section class="section-block reveal-on-scroll">
+      <div style="margin-bottom: var(--sp-400);">
+        <div class="caption-1" style="color: var(--text-muted); margin-bottom: var(--sp-75);">Answers before you install</div>
+        <h2 class="heading-3">Frequently asked questions</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary class="faq-trigger title-3">
+            <span>Which Windows versions are supported by Crazy Downloader 2.1.0?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p class="faq-answer body-6">
+            Crazy Downloader 2.1.0 runs on 64 bit Windows 10 (build 19041 or newer) and Windows 11. All runtime dependencies and media tools are bundled inside the executable.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger title-3">
+            <span>Why is the browser extension provided as a folder instead of a ZIP file?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p class="faq-answer body-6">
+            Providing the unpacked <span class="mono">extensions/crazy-browser-ext</span> folder lets you load the extension directly in Chrome, Edge, or Brave using Load unpacked without extraction errors or path separator issues.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger title-3">
+            <span>Why did clicking Start download previously stay on Ready to start?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p class="faq-answer body-6">
+            Earlier builds allowed a late background link probe to overwrite the status badge after Start was clicked. Version 2.1.0 cancels stale probes as soon as you start a transfer and locks the task identifier immediately.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger title-3">
+            <span>Does the browser extension work when the main desktop window is closed?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p class="faq-answer body-6">
+            Yes. Once you run the desktop app once on your Windows account, the browser extension uses Windows Native Messaging to launch the compact download dialog on demand whenever you start a download.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger title-3">
+            <span>How does Crazy Downloader 2.1.0 handle interrupted downloads?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p class="faq-answer body-6">
+            When a server supports HTTP byte ranges, the engine saves a binary <span class="mono">.cdstate</span> checkpoint alongside the file. Pausing or restarting the app resumes from the exact byte offset.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-trigger title-3">
+            <span>Are my download URLs or files sent to any external server?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p class="faq-answer body-6">
+            No. The browser extension communicates exclusively with your local machine on <span class="mono">127.0.0.1:49820</span> and through the local Windows Native Messaging host. Read the full details on the <a href="./privacy.html" style="color: var(--text-primary);">Privacy page</a>.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 8. Final CTA Section (A2, A6) -->
+    <section class="section-block reveal-on-scroll">
+      <div class="card-surface" style="text-align: center; align-items: center; padding: var(--sp-600) var(--sp-300);" data-tilt-3d>
+        <h2 class="heading-3" style="max-width: 680px;">
+          Ready to run Crazy Downloader 2.1.0 on your Windows desktop?
+        </h2>
+        <p class="body-2" style="max-width: 680px; color: var(--text-secondary);">
+          Download the standalone 2.1.0 executable and load the companion extension folder in under two minutes.
+        </p>
+        <div style="margin-top: var(--sp-100);">
+          <a href="./Crazy%20Downloader%202.1.0.exe" download="Crazy Downloader 2.1.0.exe" class="btn btn-primary button-md">
+            Download Crazy Downloader 2.1.0
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (B10) -->
+    <footer class="site-footer">
+      <div style="display: flex; align-items: center; gap: var(--sp-100);">
+        <img src="./assets/icon.png" alt="Crazy Downloader 2 icon" class="nav-brand-logo">
+        <span class="caption-1">Crazy Downloader 2.1.0</span>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link caption-1">Downloads</a></li>
+        <li><a href="./about.html" class="footer-link caption-1">About</a></li>
+        <li><a href="./recommendations.html" class="footer-link caption-1">Recommendations</a></li>
+        <li><a href="./privacy.html" class="footer-link caption-1">Privacy policy</a></li>
+        <li><a href="./contact.html" class="footer-link caption-1">Contact</a></li>
+      </ul>
+    </footer>
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crazy Downloader 2</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body {
+      width: 300px;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      background: #12161c;
+      color: #e6edf3;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #28313e;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .mark {
+      background: #2563eb;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    .status-badge {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: #1a2029;
+      border: 1px solid #28313e;
+      color: #8b949e;
+    }
+    .status-badge.online {
+      color: #3fb950;
+      border-color: rgba(63, 185, 80, 0.35);
+      background: rgba(31, 136, 61, 0.14);
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #181d25;
+      border: 1px solid #28313e;
+      border-radius: 4px;
+      padding: 8px 10px;
+    }
+    .input-group {
+      display: flex;
+      gap: 6px;
+    }
+    input[type="text"] {
+      flex: 1;
+      background: #0e1217;
+      border: 1px solid #28313e;
+      border-radius: 4px;
+      color: #e6edf3;
+      padding: 6px 8px;
+      font-size: 12px;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #3b82f6;
+    }
+    button {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #28313e;
+      background: #212834;
+      color: #e6edf3;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2b3444;
+    }
+    button.primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+      color: #fff;
+    }
+    button.primary:hover {
+      background: #1d4ed8;
+    }
+    .meta {
+      font-size: 11px;
+      color: #6e7681;
+      font-family: Consolas, monospace;
+      word-break: break-all;
+    }
+    .notice-box {
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(248, 81, 73, 0.4);
+      background: rgba(185, 28, 28, 0.14);
+      color: #e6edf3;
+      font-size: 11px;
+      line-height: 1.45;
+      display: none;
+    }
+    .notice-box.warn {
+      border-color: rgba(210, 153, 34, 0.45);
+      background: rgba(180, 83, 9, 0.16);
+    }
+    .notice-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: #f85149;
+    }
+    .notice-box.warn .notice-title {
+      color: #d29922;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <span class="mark">CD2</span>
+      <span>Crazy Downloader 2</span>
+    </div>
+    <span id="hostStatus" class="status-badge">Checking...</span>
+  </div>
+
+  <div id="missingHostNotice" class="notice-box">
+    <div class="notice-title" id="noticeTitle">Desktop application required</div>
+    <div id="noticeText">Install and run Crazy Downloader 2 for Windows once so browser downloads and video streams can be handed to the desktop engine.</div>
+  </div>
+
+  <div class="row">
+    <span>Intercept browser downloads</span>
+    <input type="checkbox" id="interceptToggle" checked>
+  </div>
+
+  <div class="input-group">
+    <input type="text" id="quickUrl" placeholder="Paste URL to download...">
+    <button type="button" id="sendUrlBtn" class="primary">Download</button>
+  </div>
+
+  <button type="button" id="downloadPageVideoBtn">Download video on current tab</button>
+
+  <div class="meta" id="extIdDisplay"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+

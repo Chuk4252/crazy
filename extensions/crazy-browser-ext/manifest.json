@@ -1,0 +1,57 @@
+{
+  "name": "Crazy Downloader 2",
+  "description": "Browser integration for Crazy Downloader 2 with on-demand desktop launch and video quality selection",
+  "version": "2.1.0",
+  "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA290RdzGlYDkwIgRu0aupvOC7g6vjGMQ1lt2NlTfU77yT1HjHWZd3O1XztZgS/IsF6489UmXzZOKF7R9FFjkvtnJNoWtSPBP10b9fY6XoCdiYAwNBLvii5tSFvXiYTfUwxrCHleK5MizseawUOV4EER3lyzO/SHd6wO59ZOHO72/hcQjKk9HC4J/VFIFz2pTCsuzWFcnDyUyr4tLmWeIeTf3kE5VRZ7PAeh3/VCvaxqmKmZXuaTEkFWcgUJ4wM8Eij78KVlby9AXzIwtUJ+uayifPeczIrHMG2DSpnYa8idPQI+ghUMAqzr5YnjzPf87JHCWwQMXdb64K3/s17BYBbwIDAQAB",
+  "icons": {
+    "16": "icons/logo16.png",
+    "32": "icons/logo32.png",
+    "48": "icons/logo48.png",
+    "128": "icons/logo128.png"
+  },
+  "action": {
+    "default_title": "Crazy Downloader 2",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/logo16.png",
+      "32": "icons/logo32.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "src/youtube_page_bridge.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "permissions": [
+    "downloads",
+    "webRequest",
+    "contextMenus",
+    "storage",
+    "tabs",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}

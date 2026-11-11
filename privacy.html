@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy policy for Crazy Downloader 2.1.0</title>
+  <meta name="description" content="Privacy policy for Crazy Downloader 2.1.0 desktop application and companion browser extension. Zero external telemetry and local storage only.">
+  <meta property="og:title" content="Privacy policy for Crazy Downloader 2.1.0">
+  <meta property="og:description" content="How Crazy Downloader 2.1.0 handles local data and browser permissions.">
+  <meta property="og:image" content="./assets/icon.png">
+  <link rel="icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script src="./assets/site.js" defer></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link button-sm">Skip to content</a>
+
+  <div class="nav-wrapper">
+    <nav class="floating-nav" aria-label="Primary navigation">
+      <a href="./index.html" class="nav-brand">
+        <img src="./assets/icon.png" alt="Crazy Downloader 2 logo" class="nav-brand-logo">
+        <span class="title-4">Crazy Downloader</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="./index.html" class="nav-link title-4">Downloads</a></li>
+        <li><a href="./about.html" class="nav-link title-4">About</a></li>
+        <li><a href="./recommendations.html" class="nav-link title-4">Recommendations</a></li>
+        <li><a href="./privacy.html" class="nav-link active title-4" aria-current="page">Privacy</a></li>
+        <li><a href="./contact.html" class="nav-link title-4">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="icon-btn" aria-label="Switch theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="128" cy="128" r="56"></circle>
+            <line x1="128" y1="36" x2="128" y2="16"></line>
+            <line x1="128" y1="240" x2="128" y2="220"></line>
+            <line x1="63" y1="63" x2="49" y2="49"></line>
+            <line x1="207" y1="207" x2="193" y2="193"></line>
+            <line x1="36" y1="128" x2="16" y2="128"></line>
+            <line x1="240" y1="128" x2="220" y2="128"></line>
+            <line x1="63" y1="193" x2="49" y2="207"></line>
+            <line x1="207" y1="49" x2="193" y2="63"></line>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
+            <path d="M210.7,158.8A88,88,0,0,1,97.2,45.3a88,88,0,1,0,113.5,113.5Z"></path>
+          </svg>
+        </button>
+
+        <button type="button" id="mobile-menu-toggle" class="icon-btn menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" aria-label="Toggle navigation menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line class="menu-line menu-line-top" x1="4" y1="8" x2="20" y2="8"></line>
+            <line class="menu-line menu-line-bottom" x1="4" y1="16" x2="20" y2="16"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="mobile-menu-panel" class="mobile-menu-panel" role="dialog" aria-label="Mobile navigation">
+    <a href="./index.html" class="mobile-nav-link heading-5">Downloads</a>
+    <a href="./about.html" class="mobile-nav-link heading-5">About</a>
+    <a href="./recommendations.html" class="mobile-nav-link heading-5">Recommendations</a>
+    <a href="./privacy.html" class="mobile-nav-link heading-5">Privacy</a>
+    <a href="./contact.html" class="mobile-nav-link heading-5">Contact</a>
+  </div>
+
+  <main id="main-content" class="page-container">
+    <section class="hero-section">
+      <div class="proof-strip caption-1">
+        <span>Effective date: November 11, 2026</span>
+        <span>Local execution policy</span>
+      </div>
+
+      <h1 class="heading-1 hero-heading">
+        Privacy policy
+      </h1>
+
+      <p class="body-2 hero-subheadline">
+        Crazy Downloader 2.1.0 and its companion browser extension process all downloads, URLs, and preferences locally on your computer. We do not collect, transmit, or sell personal data.
+      </p>
+    </section>
+
+    <section class="section-block reveal-on-scroll">
+      <div class="faq-list">
+        <article class="card-surface">
+          <div class="card-inner">
+            <h2 class="title-2">1. Zero external telemetry or tracking</h2>
+            <p class="body-6" style="color: var(--text-secondary);">
+              Neither the Windows desktop application nor the browser extension includes analytics SDKs, crash telemetry reporters, or advertising trackers. Your browsing history, download URLs, and saved filenames never leave your device.
+            </p>
+          </div>
+        </article>
+
+        <article class="card-surface">
+          <div class="card-inner">
+            <h2 class="title-2">2. Where local data is stored on your machine</h2>
+            <p class="body-6" style="color: var(--text-secondary);">
+              Application preferences (<span class="mono">crazy-settings.json</span>) and your local download list (<span class="mono">crazy-downloads.json</span>) are stored exclusively in your Windows user profile directory at <span class="mono">%APPDATA%\crazy-downloader-desktop</span>. You can clear or delete these files at any time.
+            </p>
+          </div>
+        </article>
+
+        <article class="card-surface">
+          <div class="card-inner">
+            <h2 class="title-2">3. How browser extension permissions are used</h2>
+            <p class="body-6" style="color: var(--text-secondary);">
+              The companion extension requests <span class="mono">downloads</span>, <span class="mono">webRequest</span>, <span class="mono">contextMenus</span>, <span class="mono">storage</span>, <span class="mono">tabs</span>, and <span class="mono">nativeMessaging</span> solely to hand user initiated downloads and detected video streams to the local desktop process over <span class="mono">http://127.0.0.1:49820</span> or the local Windows Native Messaging host (<span class="mono">com.crazy.downloader</span>).
+            </p>
+          </div>
+        </article>
+
+        <article class="card-surface">
+          <div class="card-inner">
+            <h2 class="title-2">4. Direct network connections</h2>
+            <p class="body-6" style="color: var(--text-secondary);">
+              Crazy Downloader 2.1.0 only makes outbound network requests to the exact file or video URLs you choose to download, and to the update metadata URL if you configure or run an update check.
+            </p>
+          </div>
+        </article>
+
+        <article class="card-surface">
+          <div class="card-inner">
+            <h2 class="title-2">5. Privacy questions and contact</h2>
+            <p class="body-6" style="color: var(--text-secondary);">
+              If you have any questions about this policy, reach out at <a href="mailto:crazydownloadersport@gmail.com" class="mono" style="color: var(--text-primary);" data-contact-email>crazydownloadersport@gmail.com</a>.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div style="display: flex; align-items: center; gap: var(--sp-100);">
+        <img src="./assets/icon.png" alt="Crazy Downloader 2 icon" class="nav-brand-logo">
+        <span class="caption-1">Crazy Downloader 2.1.0</span>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link caption-1">Downloads</a></li>
+        <li><a href="./about.html" class="footer-link caption-1">About</a></li>
+        <li><a href="./recommendations.html" class="footer-link caption-1">Recommendations</a></li>
+        <li><a href="./privacy.html" class="footer-link caption-1">Privacy policy</a></li>
+        <li><a href="./contact.html" class="footer-link caption-1">Contact</a></li>
+      </ul>
+    </footer>
+  </main>
+</body>
+</html>
+
